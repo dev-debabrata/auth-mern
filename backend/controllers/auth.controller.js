@@ -28,7 +28,7 @@ export const signup = async (req, res) => {
         });
 
         await user.save();
-
+        // JWT
         generateTokenAndSetCookie(res, user._id);
 
         res.status(201).json({
@@ -37,13 +37,13 @@ export const signup = async (req, res) => {
             user: {
                 ...User._doc,
                 password: undefined
-            }
-        })
+            },
+        });
 
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });
     }
-}
+};
 
 export const login = async (req, res) => {
     res.send("login");
