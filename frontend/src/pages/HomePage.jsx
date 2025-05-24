@@ -1,12 +1,15 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import Header from '../components/Header'
 
-const homePage = () => {
+
+const HomePage = () => {
     return (
         <div>
             <Navbar />
+            <Header />
         </div>
     )
 }
 
-export default homePage
+export default HomePage
