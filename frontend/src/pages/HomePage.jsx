@@ -5,7 +5,8 @@ import Header from '../components/Header'
 
 const HomePage = () => {
     return (
-        <div className=' bg-gray-950 min-h-screen '>
+        <div className=' bg-stone-300 min-h-screen '>
+
             <Navbar />
             <Header />
         </div>
