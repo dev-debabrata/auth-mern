@@ -5,7 +5,7 @@ import Header from '../components/Header'
 
 const HomePage = () => {
     return (
-        <div className=' bg-stone-300 min-h-screen '>
+        <div className=' flex-auto min-h-screen '>
 
             <Navbar />
             <Header />
