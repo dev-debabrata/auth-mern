@@ -1,20 +1,30 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion";
 import Input from '../components/Input';
-import { FiUser } from "react-icons/fi";
+import { FiLoader, FiUser } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuLock } from "react-icons/lu";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PasswordStrength from '../components/PasswordStrength';
+import { useAuthStore } from '../Store/authStore';
 
 const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-    const handleSignup = (e) => {
+    const { signup, error, isLoading } = useAuthStore();
+
+    const handleSignup = async (e) => {
         e.preventDefault();
-    }
+        try {
+            await signup(email, password, name);
+            navigate("/verify-email");
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -45,6 +55,7 @@ const SignUpPage = () => {
                         placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} />
+                    {error && <p className='text-red-500 font-semibold mt-2'>{error}</p>}
                     {/* password strength meter */}
                     <PasswordStrength password={password} />
                     <motion.button
@@ -56,7 +67,7 @@ const SignUpPage = () => {
                         whileTap={{ scale: 0.98 }}
                         type='submit'
                     >
-                        Sign Up
+                        {isLoading ? <FiLoader className=' animate-spin mx-auto' size={24} /> : "Sign Up"}
                     </motion.button>
                 </form>
             </div>
