@@ -5,6 +5,7 @@ import { FiUser } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuLock } from "react-icons/lu";
 import { Link } from 'react-router-dom';
+import PasswordStrength from '../components/PasswordStrength';
 
 const SignUpPage = () => {
     const [name, setName] = useState("");
@@ -34,17 +35,18 @@ const SignUpPage = () => {
                         onChange={(e) => setName(e.target.value)} />
                     <Input
                         icon={MdOutlineEmail}
-                        type="text"
+                        type="email"
                         placeholder='Email Address'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)} />
                     <Input
                         icon={LuLock}
-                        type="text"
+                        type="password"
                         placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} />
                     {/* password strength meter */}
+                    <PasswordStrength password={password} />
                     <motion.button
                         className='mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
 						font-bold rounded-lg shadow-lg hover:from-green-600
