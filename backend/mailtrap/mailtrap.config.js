@@ -11,7 +11,7 @@ export const mailtrapClient = nodemailer.createTransport(
 );
 
 export const sender = {
-    address: "noreply@yourdomain.com", // ✅ Must be from a domain you've verified in Mailtrap
+    address: "yourdomain.com", // ✅ Must be from a domain you've verified in Mailtrap
     name: "Debu",
 };
 
