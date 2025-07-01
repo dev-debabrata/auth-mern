@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useAuthStore } from "../Store/authStore";
+import { useAuthStore } from "../store/authStore";
 import Input from "../components/Input";
 import { MdOutlineEmail } from "react-icons/md";
 import { FiLoader } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
+
+
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");
