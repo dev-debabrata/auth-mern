@@ -6,7 +6,8 @@ import { MdOutlineEmail } from "react-icons/md";
 import { LuLock } from "react-icons/lu";
 import { Link, useNavigate } from 'react-router-dom';
 import PasswordStrength from '../components/PasswordStrength';
-import { useAuthStore } from '../Store/authStore';
+import { useAuthStore } from '../store/authStore';
+
 
 const SignUpPage = () => {
     const [name, setName] = useState("");

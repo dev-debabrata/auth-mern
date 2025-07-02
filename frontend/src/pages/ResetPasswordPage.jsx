@@ -6,6 +6,8 @@ import Input from "../components/Input";
 import { LuLock } from "react-icons/lu";
 import toast from "react-hot-toast";
 
+
+
 const ResetPasswordPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
