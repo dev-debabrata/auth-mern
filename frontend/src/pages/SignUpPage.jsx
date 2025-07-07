@@ -9,6 +9,7 @@ import PasswordStrength from '../components/PasswordStrength';
 import { useAuthStore } from '../store/authStore';
 
 
+
 const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

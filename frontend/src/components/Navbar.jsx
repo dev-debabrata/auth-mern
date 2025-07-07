@@ -12,7 +12,7 @@ const Navbar = () => {
                 <h1 className=' text-2xl text-stone-300'>Authentication</h1>
             </div>
             <Link to={"/signup"} className=' flex items-center gap-2 border-none bg-stone-800 rounded-full px-6 py-2 text-stone-300 hover:bg-stone-300 hover:text-stone-900 font-semibold cursor-pointer'>Login <FaArrowRightLong size={14} /></Link>
-        </div >
+        </div>
     )
 }
 
