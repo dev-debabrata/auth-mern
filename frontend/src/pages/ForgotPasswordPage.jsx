@@ -62,7 +62,7 @@ const ForgotPasswordPage = () => {
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                            className='w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4'
+                            className='w-16 h-16 bg-stone-500 rounded-full flex items-center justify-center mx-auto mb-4'
                         >
                             <MdOutlineEmail className='h-8 w-8 text-white' />
                         </motion.div>

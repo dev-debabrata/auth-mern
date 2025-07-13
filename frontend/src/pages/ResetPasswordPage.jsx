@@ -48,7 +48,7 @@ const ResetPasswordPage = () => {
                     Reset Password
                 </h2>
                 {error && <p className='text-red-500 text-sm mb-4'>{error}</p>}
-                {message && <p className='text-green-500 text-sm mb-4'>{message}</p>}
+                {message && <p className='text-stone-500 text-sm mb-4'>{message}</p>}
 
                 <form onSubmit={handleSubmit}>
                     <Input
