@@ -1,8 +1,12 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { useNavigate } from 'react-router-dom'
 // import { assets } from '../assets/assets'
 
 const Header = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className=' flex items-center justify-center py-12'>
             <div className=' flex flex-col mt-20 px-4 text-stone-800 items-center text-center'>
@@ -19,7 +23,9 @@ const Header = () => {
                 <p className=' mb-8 max-w-md text-stone-700'>
                     Let's start with a quick product tour and we will have you up and running in no time!
                 </p>
-                <button className='border-none bg-stone-800 rounded-full px-6 py-2.5 text-stone-300 hover:bg-stone-400 hover:text-stone-900 font-semibold cursor-pointer transition-all'>
+                <button
+                    onClick={() => navigate('/login')}
+                    className='border-none bg-stone-800 rounded-full px-6 py-2.5 text-stone-300 hover:bg-stone-400 hover:text-stone-900 font-semibold cursor-pointer transition-all'>
                     Get Started
                 </button>
             </div>
