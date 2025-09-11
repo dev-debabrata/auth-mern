@@ -1,23 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuLock } from "react-icons/lu";
 import Input from '../components/Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiLoader } from 'react-icons/fi';
 import { useAuthStore } from '../store/authStore';
-
-
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const { login, isLoading, error } = useAuthStore();
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         await login(email, password);
+
+        if (!error) {
+            toast.success("Login Successful!");
+
+            // redirect to home after short delay
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
+        } else {
+            toast.error(error);
+        }
     };
 
     return (
@@ -28,7 +39,7 @@ const LoginPage = () => {
             className='max-w-md w-full bg-stone-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden'>
 
             <div className="p-8">
-                <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r  from-stone-200 to-gray-500 text-transparent bg-clip-text">
+                <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-stone-200 to-gray-500 text-transparent bg-clip-text">
                     Welcome Back
                 </h2>
                 <form onSubmit={handleLogin}>
@@ -62,7 +73,7 @@ const LoginPage = () => {
                         type='submit'
                         disabled={isLoading}
                     >
-                        {isLoading ? <FiLoader className='w-6 h-6 animate-spin  mx-auto' /> : "Login"}
+                        {isLoading ? <FiLoader className='w-6 h-6 animate-spin mx-auto' /> : "Login"}
                     </motion.button>
                 </form>
             </div>
@@ -78,4 +89,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage
+export default LoginPage;

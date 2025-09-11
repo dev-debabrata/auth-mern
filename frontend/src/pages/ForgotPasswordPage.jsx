@@ -6,7 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { FiLoader } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
-
+import toast from "react-hot-toast";
 
 
 const ForgotPasswordPage = () => {
@@ -17,9 +17,17 @@ const ForgotPasswordPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await forgotPassword(email);
-        setIsSubmitted(true);
+        try {
+            await forgotPassword(email);
+            setIsSubmitted(true);
+
+            toast.success("Reset link sent! Check your email");
+        } catch (err) {
+            console.log(err);
+            toast.error("Something went wrong. Try again!");
+        }
     };
+
 
     return (
         <motion.div
