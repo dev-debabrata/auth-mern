@@ -11,8 +11,8 @@ const Navbar = () => {
     return (
         <div className='w-full flex justify-between items-center p-4 sm:p-3 sm:px-24 absolute top-0 bg-stone-950'>
             <div className=' flex justify-center gap-1 items-center text-center'>
-                <img src={assets.auth_logo} alt='' className=' w-10' />
-                <h1 className=' text-2xl text-stone-300'>Authentication</h1>
+                <img src={assets.auth} alt='' className=' w-[200px] filter brightness-50 invert' />
+                {/* <h1 className=' text-2xl text-stone-300'>Authentication</h1> */}
             </div>
             <button
                 onClick={() => navigate('/signup')}

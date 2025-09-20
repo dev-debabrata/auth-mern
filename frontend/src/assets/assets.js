@@ -6,6 +6,9 @@ import hand_wave from './hand_wave.png'
 import header_img from './header.png'
 import arrow_icon from './arrow_icon.svg'
 import lock_icon from './lock_icon.svg'
+import auth from './auth.png';
+import auth1 from './auth1.png';
+
 
 export const assets = {
 
@@ -15,5 +18,7 @@ export const assets = {
     mail_icon,
     person_icon,
     hand_wave,
-    header_img
+    header_img,
+    auth,
+    auth1
 }
