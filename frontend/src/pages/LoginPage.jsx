@@ -20,19 +20,21 @@ const LoginPage = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        await login(email, password);
 
-        if (!error) {
+        try {
+            await login(email, password);
+
             toast.success("Login Successful!");
 
-            // redirect to home after short delay
             setTimeout(() => {
                 navigate("/");
-            }, 1000);
-        } else {
-            toast.error(error);
+            }, 500);
+
+        } catch (err) {
+            toast.error(err.message);
         }
     };
+
 
     return (
         <>
