@@ -14,13 +14,13 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await logout();
-            toast.success(res?.message || "Logged out successfully");
-            // navigate("/login");
-        } catch (err) {
-            toast.error(err.message);
+            await logout();
+            toast.success("Logged out successfully");
+        } catch {
+            toast.error("Logout failed");
         }
     };
+
 
     return (
         <div className='w-full flex justify-between items-center p-4 sm:p-3 sm:px-24 absolute top-0 bg-stone-950'>
