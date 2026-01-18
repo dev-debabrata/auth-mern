@@ -7,8 +7,17 @@ import EmailVerificationPage from "./pages/EmailVerificationPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import { Toaster } from "react-hot-toast";
+import { useAuthStore } from "./store/authStore";
+import { useEffect } from "react";
 
 function App() {
+
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
   return (
     <div className='min-h-screen bg-gradient-to-r from-blue-100 to-gray-400 flex items-center justify-center relative overflow-hidden'>
       <FloatingShape color='bg-red-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
