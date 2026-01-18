@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuLock } from "react-icons/lu";
 import Input from '../components/Input';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiLoader } from 'react-icons/fi';
 import { useAuthStore } from '../store/authStore';
-import toast from "react-hot-toast";
 import { assets } from '../assets/assets'
 
 
