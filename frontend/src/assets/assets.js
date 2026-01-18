@@ -1,5 +1,5 @@
 
-import auth_logo from './auth_logo.png';
+import authLogo from './auth-logo.png';
 import hand_wave from './hand_wave.png'
 import header_img from './header.png'
 
@@ -7,7 +7,7 @@ import header_img from './header.png'
 
 export const assets = {
 
-    auth_logo,
+    authLogo,
     hand_wave,
     header_img,
 }

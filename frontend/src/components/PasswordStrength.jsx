@@ -19,9 +19,9 @@ const PasswordCriteria = ({ password }) => {
                     {item.met ? (
                         <FiCheck className='size-4 text-green-500 mr-2' />
                     ) : (
-                        <HiOutlineXMark className='size-4 text-gray-500 mr-2' />
+                        <HiOutlineXMark className='size-4 text-gray-400 mr-2' />
                     )}
-                    <span className={item.met ? "text-green-500" : "text-gray-400"}>{item.label}</span>
+                    <span className={item.met ? "text-green-500" : "text-gray-300"}>{item.label}</span>
                 </div>
             ))}
         </div>
@@ -58,8 +58,8 @@ const PasswordStrength = ({ password }) => {
     return (
         <div className='mt-2'>
             <div className='flex justify-between items-center mb-1'>
-                <span className='text-xs text-gray-400'>Password strength</span>
-                <span className='text-xs text-gray-400'>{getStrengthText(strength)}</span>
+                <span className='text-xs text-gray-300'>Password strength</span>
+                <span className='text-xs text-gray-300'>{getStrengthText(strength)}</span>
             </div>
 
             <div className='flex space-x-1'>
@@ -67,7 +67,7 @@ const PasswordStrength = ({ password }) => {
                     <div
                         key={index}
                         className={`h-1 w-1/4 rounded-full transition-colors duration-300 
-                ${index < strength ? getColor(strength) : "bg-gray-600"}
+                ${index < strength ? getColor(strength) : "bg-gray-400"}
               `}
                     />
                 ))}

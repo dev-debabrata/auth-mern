@@ -19,9 +19,12 @@ export const useAuthStore = create((set) => ({
                 name,
             });
             set({ user: response.data.user, isAuthenticated: true, isLoading: false });
-        } catch (error) {
-            set({ error: error.response.data.message || "Error signing up", isLoading: false });
-            throw error;
+        } catch (err) {
+            const message = err.response?.data?.message || "Error signing up";
+
+            set({ error: message, isLoading: false });
+
+            throw new Error(message);
         }
     },
 
@@ -56,24 +59,41 @@ export const useAuthStore = create((set) => ({
 
     logout: async () => {
         set({ isLoading: true, error: null });
+
         try {
-            await axiosInstance.post("/auth/logout");
-            set({ user: null, isAuthenticated: false, error: null, isLoading: false });
-        } catch (error) {
-            set({ error: "Error logging out", isLoading: false });
-            throw error;
+            const response = await axiosInstance.post("/auth/logout");
+
+            set({
+                user: null,
+                isAuthenticated: false,
+                error: null,
+                isLoading: false,
+            });
+
+            return response.data;
+        } catch (err) {
+            const message = err.response?.data?.message || "Error logging out";
+            set({ error: message, isLoading: false });
+            throw new Error(message);
         }
     },
+
+
 
     verifyEmail: async (code) => {
         set({ isLoading: true, error: null });
         try {
             const response = await axiosInstance.post("/auth/verify-email", { code });
-            set({ user: response.data.user, isAuthenticated: true, isLoading: false });
+            set({
+                user: response.data.user,
+                isAuthenticated: true,
+                isLoading: false
+            });
             return response.data;
-        } catch (error) {
-            set({ error: error.response.data.message || "Error verifying email", isLoading: false });
-            throw error;
+        } catch (err) {
+            const message = err.response?.data?.message || "Error verifying email";
+            set({ error: message, isLoading: false });
+            throw new Error(message);
         }
     },
 
@@ -91,13 +111,13 @@ export const useAuthStore = create((set) => ({
         set({ isLoading: true, error: null });
         try {
             const response = await axiosInstance.post("/auth/forgot-password", { email });
-            set({ message: response.data.message, isLoading: false });
-        } catch (error) {
             set({
-                isLoading: false,
-                error: error.response.data.message || "Error sending reset password email",
+                message: response.data.message, isLoading: false
             });
-            throw error;
+        } catch (err) {
+            const message = err.response?.data?.message || "Error sending reset password email";
+            set({ error: message, isLoading: false });
+            throw new Error(message);
         }
     },
 
@@ -106,24 +126,31 @@ export const useAuthStore = create((set) => ({
         try {
             const response = await axiosInstance.post(`/auth/reset-password/${token}`, { password });
             set({ message: response.data.message, isLoading: false });
-        } catch (error) {
-            set({
-                isLoading: false,
-                error: error.response.data.message || "Error resetting password",
-            });
-            throw error;
+        } catch (err) {
+            const message = err.response?.data?.message || "Error resetting password";
+            set({ error: message, isLoading: false });
+            throw new Error(message);
         }
     },
 
     getUser: async () => {
         set({ isLoading: true });
+
         try {
             const response = await axiosInstance.get("/auth/me");
-            set({ user: response.data.user, isAuthenticated: true, isLoading: false });
-        } catch (error) {
+
+            set({
+                user: response.data.user,
+                isAuthenticated: true,
+                isLoading: false,
+            });
+
+            return response.data;
+        } catch {
             set({ user: null, isAuthenticated: false, isLoading: false });
         }
     },
+
 
 
 }));

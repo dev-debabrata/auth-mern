@@ -14,13 +14,14 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            await logout();
-            toast.success("Logged out successfully");
+            const res = await logout();
+            toast.success(res?.message || "Logged out successfully");
             setOpen(false);
-        } catch {
-            toast.error("Logout failed");
+        } catch (err) {
+            toast.error(err.message || "Logout failed");
         }
     };
+
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -34,15 +35,16 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className='w-full flex justify-between items-center p-4 sm:p-3 sm:px-24 absolute top-0 bg-stone-950'>
+        <div className='w-full flex justify-between items-center p-4 sm:p-3 sm:px-24 absolute top-0 bg-blue-950'>
             <div className='flex justify-center gap-1 items-center text-center'>
-                <img src={assets.auth} alt='' className='w-[200px] filter brightness-50 invert' />
+                <img src={assets.authLogo} alt='' className='w-10 ' />
+                <h1 className=' text-white text-2xl font-bold italic'>Auth</h1>
             </div>
 
             {!isAuthenticated ? (
                 <button
                     onClick={() => navigate('/signup')}
-                    className='flex items-center gap-2 border-none bg-stone-800 rounded-full px-6 py-2 text-stone-300 hover:bg-stone-300 hover:text-stone-900 font-semibold cursor-pointer'>
+                    className='flex items-center gap-2 border-none bg-blue-800 rounded-full px-6 py-2 text-blue-100 hover:bg-blue-200 hover:text-blue-900 font-semibold cursor-pointer'>
                     Login <FaArrowRightLong size={14} />
                 </button>
             ) : (
@@ -50,17 +52,17 @@ const Navbar = () => {
                     {/* Avatar */}
                     <div
                         onClick={() => setOpen(!open)}
-                        className="w-10 h-10 bg-stone-700 text-white flex items-center justify-center rounded-full font-bold cursor-pointer hover:ring-2 hover:ring-stone-400 transition"
+                        className="w-10 h-10 bg-blue-700 text-white flex items-center justify-center rounded-full font-bold cursor-pointer hover:ring-2 hover:ring-blue-400 transition"
                     >
                         {user?.name?.charAt(0).toUpperCase()}
                     </div>
 
                     {/* Dropdown */}
                     {open && (
-                        <div className="absolute right-0 mt-2 w-28 bg-stone-900 rounded-xl shadow-lg border border-stone-700 overflow-hidden">
+                        <div className="absolute right-0 mt-2 w-20 bg-blue-100 rounded-xl shadow-lg border border-blue-700 overflow-hidden">
                             <button
                                 onClick={handleLogout}
-                                className="w-full text-left px-4 py-2 text-red-400 hover:bg-stone-800 transition cursor-pointer"
+                                className="w-full text-left px-4 py-2 text-red-500 hover:bg-red-800 hover:text-white transition cursor-pointer"
                             >
                                 Logout
                             </button>
