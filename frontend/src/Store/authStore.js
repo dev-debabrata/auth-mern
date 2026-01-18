@@ -1,10 +1,6 @@
 import { create } from "zustand";
-import axios from "axios";
+import { axiosInstance } from "../lib/axios";
 
-const API_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/api/auth" : "/api/auth";
-// const API_URL = "http://localhost:5000/api/auth";
-
-axios.defaults.withCredentials = true;
 
 export const useAuthStore = create((set) => ({
     user: null,
@@ -17,7 +13,11 @@ export const useAuthStore = create((set) => ({
     signup: async (email, password, name) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/signup`, { email, password, name });
+            const response = await axiosInstance.post("/auth/signup", {
+                email,
+                password,
+                name,
+            });
             set({ user: response.data.user, isAuthenticated: true, isLoading: false });
         } catch (error) {
             set({ error: error.response.data.message || "Error signing up", isLoading: false });
@@ -29,7 +29,10 @@ export const useAuthStore = create((set) => ({
         set({ isLoading: true, error: null });
 
         try {
-            const response = await axios.post(`${API_URL}/login`, { email, password });
+            const response = await axiosInstance.post("/auth/login", {
+                email,
+                password,
+            });
 
             set({
                 isAuthenticated: true,
@@ -54,7 +57,7 @@ export const useAuthStore = create((set) => ({
     logout: async () => {
         set({ isLoading: true, error: null });
         try {
-            await axios.post(`${API_URL}/logout`);
+            await axiosInstance.post("/auth/logout");
             set({ user: null, isAuthenticated: false, error: null, isLoading: false });
         } catch (error) {
             set({ error: "Error logging out", isLoading: false });
@@ -65,7 +68,7 @@ export const useAuthStore = create((set) => ({
     verifyEmail: async (code) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/verify-email`, { code });
+            const response = await axiosInstance.post("/auth/verify-email", { code });
             set({ user: response.data.user, isAuthenticated: true, isLoading: false });
             return response.data;
         } catch (error) {
@@ -77,7 +80,7 @@ export const useAuthStore = create((set) => ({
     checkAuth: async () => {
         set({ isCheckingAuth: true, error: null });
         try {
-            const response = await axios.get(`${API_URL}/check-auth`);
+            const response = await axiosInstance.get("/auth/check-auth");
             set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
         } catch (error) {
             set({ error: null, isCheckingAuth: false, isAuthenticated: false });
@@ -87,7 +90,7 @@ export const useAuthStore = create((set) => ({
     forgotPassword: async (email) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/forgot-password`, { email });
+            const response = await axiosInstance.post("/auth/forgot-password", { email });
             set({ message: response.data.message, isLoading: false });
         } catch (error) {
             set({
@@ -101,7 +104,7 @@ export const useAuthStore = create((set) => ({
     resetPassword: async (token, password) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.post(`${API_URL}/reset-password/${token}`, { password });
+            const response = await axiosInstance.post(`/auth/reset-password/${token}`, { password });
             set({ message: response.data.message, isLoading: false });
         } catch (error) {
             set({
@@ -115,11 +118,12 @@ export const useAuthStore = create((set) => ({
     getUser: async () => {
         set({ isLoading: true });
         try {
-            const response = await axios.get(`${API_URL}/me`); // backend should return user
+            const response = await axiosInstance.get("/auth/me");
             set({ user: response.data.user, isAuthenticated: true, isLoading: false });
         } catch (error) {
             set({ user: null, isAuthenticated: false, isLoading: false });
         }
     },
+
 
 }));
