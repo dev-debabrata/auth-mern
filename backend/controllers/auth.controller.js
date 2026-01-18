@@ -124,9 +124,16 @@ export const login = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-    res.clearCookie("token");
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: process.env.NODE_ENV === "production",
+    });
+
     res.status(200).json({ success: true, message: "Logged out successfully" });
 };
+
+
 
 export const forgotPassword = async (req, res) => {
     const { email } = req.body;
