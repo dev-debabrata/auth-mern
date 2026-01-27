@@ -19,7 +19,7 @@ const Header = () => {
                     Hey {isAuthenticated ? user?.name : "Developer"} 👋
                 </h1>
                 <h2 className=' text-3xl sm:text-5xl font-bold mb-4 text-gray-800'>
-                    Welcome to my Authentication app
+                    Welcome to my DevAuth app
                 </h2>
                 <p className=' mb-8 max-w-md text-gray-500'>
                     Let's start with a quick product tour and we will have you up and running in no time!

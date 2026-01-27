@@ -14,7 +14,7 @@ export const transporter = nodemailer.createTransport({
 });
 
 export const sender = {
-    name: "Auth App",
+    name: "DevAuth App",
     email: process.env.SENDER_EMAIL,
 
 };

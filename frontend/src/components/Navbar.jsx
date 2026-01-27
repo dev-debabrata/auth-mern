@@ -38,7 +38,7 @@ const Navbar = () => {
         <div className='w-full flex justify-between items-center p-4 sm:p-3 sm:px-24 absolute top-0 bg-blue-950'>
             <div className='flex justify-center gap-1 items-center text-center'>
                 <img src={assets.authLogo} alt='' className='w-10 ' />
-                <h1 className=' text-white text-2xl font-bold italic'>Auth</h1>
+                <h1 className=' text-white text-2xl font-bold italic'>DevAuth</h1>
             </div>
 
             {!isAuthenticated ? (
