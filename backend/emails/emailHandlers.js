@@ -3,6 +3,7 @@ import {
     PASSWORD_RESET_REQUEST_TEMPLATE,
     PASSWORD_RESET_SUCCESS_TEMPLATE,
     VERIFICATION_EMAIL_TEMPLATE,
+    WELCOME_EMAIL_TEMPLATE,
 } from "./emailTemplates.js";
 import { transporter, sender } from "./nodemailer.config.js";
 
@@ -28,7 +29,9 @@ export const sendWelcomeEmail = async (email, name) => {
             from: `"${sender.name}" <${sender.email}>`,
             to: email,
             subject: "Welcome to Auth Company 🎉",
-            html: `<h1>Hello ${name}</h1><p>Welcome to Auth Company!</p>`,
+            html: WELCOME_EMAIL_TEMPLATE
+                .replace("{name}", name)
+                .replace("{appUrl}", appUrl),
         });
 
         console.log("Welcome email sent:", response.messageId);

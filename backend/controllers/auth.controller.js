@@ -57,6 +57,7 @@ export const signup = async (req, res) => {
     }
 };
 
+
 export const verifyEmail = async (req, res) => {
     const { code } = req.body;
     try {
@@ -74,7 +75,11 @@ export const verifyEmail = async (req, res) => {
         user.verificationTokenExpiresAt = undefined;
         await user.save();
 
-        await sendWelcomeEmail(user.email, user.name);
+        await sendWelcomeEmail(
+            user.email,
+            user.name,
+            process.env.CLIENT_URL
+        );
 
         res.status(200).json({
             success: true,
