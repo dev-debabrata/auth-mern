@@ -28,6 +28,56 @@ export const VERIFICATION_EMAIL_TEMPLATE = `
 </html>
 `;
 
+export const WELCOME_EMAIL_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+  <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+    <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
+      <h1 style="color: #fff; margin: 0;">Welcome to DevAuth</h1>
+    </div>
+
+    <div style="padding: 20px; color: #333;">
+      <p>Hi <strong>{name}</strong>,</p>
+
+      <p>We're excited to have you on board! Your account has been successfully created.</p>
+
+      <p>You can now:</p>
+      <ul>
+        <li>Explore all features</li>
+        <li>Connect with others</li>
+        <li>Securely manage your account</li>
+      </ul>
+
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="{appUrl}" 
+           style="background: #4CAF50; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+          Go to Dashboard
+        </a>
+      </div>
+
+      <p>If you have any questions, feel free to reply to this email.</p>
+
+      <p>Cheers,<br/>
+      <strong>Your App Team</strong></p>
+    </div>
+
+    <div style="text-align: center; font-size: 12px; color: #888; padding: 15px;">
+      This is an automated email. Please do not share your login credentials with anyone.
+    </div>
+
+  </div>
+</body>
+</html>
+`;
+
+
 export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
 <!DOCTYPE html>
 <html lang="en">
