@@ -28,7 +28,7 @@ export const sendWelcomeEmail = async (email, name) => {
         const response = await transporter.sendMail({
             from: `"${sender.name}" <${sender.email}>`,
             to: email,
-            subject: "Welcome to Auth Company 🎉",
+            subject: "Welcome to Auth Company.",
             html: WELCOME_EMAIL_TEMPLATE
                 .replace("{name}", name)
                 .replace("{appUrl}", appUrl),
